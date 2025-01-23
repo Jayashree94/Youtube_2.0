@@ -6,6 +6,7 @@ import { YOUTUBE_SEARCH_API } from "../utils/constants";
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => getSearchSuggestions(), 200);
@@ -52,6 +53,9 @@ const Head = () => {
             onChange={(e) => {
               setSearchQuery(e.target.value);
             }}
+            onFocus={()=> setShowSuggestions(true)}
+            onBlur={()=> setShowSuggestions(false)}
+            
           ></input>
 
           <button className="border border-gray-600 px-2 rounded-r-full">
@@ -64,7 +68,7 @@ const Head = () => {
         </div>
         <div className="fixed bg-slate-100 px-5 py-2 w-[37rem] text-left border-gray-600">
           <ul>
-            {suggestions.map((s) => (
+            {showSuggestions && suggestions.map((s) => (
               <li key={s} className="p-2 shadow-sm  hover:bg-gray-300">
                  {s}
               </li>

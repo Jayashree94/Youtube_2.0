@@ -3,50 +3,59 @@ import React from "react";
 const commentsData = [
   {
     name: "Jayashree S",
-    comment: "Very noce video",
+    text: "Very nice video...",
     replies: [
       {
         name: "Rubashree",
-        comment: "Amazing",
+        text: "Amazing...",
+        replies:[{
+            name: "Vihaan",
+            text:"Acha acha! bahhot acha",
+        replies:[]}
+        ]
+
       },
     ],
   },
   {
     name: "Jayashree S",
-    comment: "Very noce video",
+    text: "Very nice video!!",
     replies: [
       {
         name: "Rubashree",
-        comment: "Amazing",
+        text: "Amazing vdeo",
+        replies:[]
       },
     ],
   },
   {
     name: "Jayashree S",
-    comment: "Very noce video",
+    text: "Very nice video :)",
     replies: [
       {
         name: "Rubashree",
-        comment: "Amazing",
+        text: "Amazing :)",
+        replies:[]
       },
     ],
   },
   {
     name: "Jayashree S",
-    comment: "Very noce video",
+    text: "Very nice video///",
     replies: [
       {
         name: "Rubashree",
-        comment: "Amazing",
+        text: "Amazing.. coool",
+        replies:[]
       },
     ],
   },
 ];
 
 const Comment = ({ data }) => {
-  const { name, comment, replies } = data;
+  const { name, text, replies } = data;
   return (
-    <div className="flex bg-slate-200 shadow-lg">
+    <div className="flex bg-slate-100 shadow-lg p-2 rounded-sm">
       <img
         className="h-7"
         alt="user"
@@ -54,19 +63,20 @@ const Comment = ({ data }) => {
       ></img>
       <div className="px-3">
         <p className="font-bold">{name}</p>
-        <p>{comment}</p>
+        <p>{text}</p>
       </div>
     </div>
   );
 };
 
-const CommentList = ({ comment }) => {
-  return comment.map((comment, index) => (
+const CommentList = ({ comments }) => {
+  return comments.map((comment, text) => (
     <div>
-    <Comment data={comment} key={index} />
-    <div className="pl-5 border border-l-black ml-5"> 
-       <CommentList comment={comment.replies} />
-    </div>
+      <Comment key={text} data={comment}  />
+      <div className="pl-5 border border-l-black ml-5">
+      <CommentList comments={comment.replies} />
+      
+      </div>
     </div>
   ));
 };
@@ -75,7 +85,7 @@ const CommentsContainer = () => {
   return (
     <div className="m-5 p-2">
       <h1 className="font-bold"> Comments </h1>
-      <CommentList comment={commentsData} />
+      <CommentList comments={commentsData} />
     </div>
   );
 };

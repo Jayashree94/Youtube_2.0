@@ -16,7 +16,7 @@ export const Livechat = () => {
       dispatch(
         addMessage({
           name: generaterandomname(),
-          message: randomMessage(20),
+          message: randomMessage(40),
         })
       );
     }, 2000);
@@ -33,7 +33,14 @@ export const Livechat = () => {
       ))}
       </div>
       </div>
-      <form className="w-full p-2 ml-2 border border-black flex">
+      <form className="w-full p-2 ml-2 border border-black flex" onSubmit={(e)=>{e.preventDefault()
+      dispatch(addMessage({
+        name:"Jayashree",
+        message: liveMessage
+      }))
+      setLiveMessage("");
+
+      }}>
         <input className=" px-2 w-96" value= {liveMessage} type="text" onChange={(e)=> setLiveMessage(e.target.value)}></input>
         <button className="px-4 mx-2 bg-green-300 rounded-lg">Send</button>
       </form>
